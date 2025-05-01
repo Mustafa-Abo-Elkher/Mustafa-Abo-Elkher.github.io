@@ -86,7 +86,6 @@ async function sendMessageFunc(e) {
 
   const formData = new FormData(e.currentTarget);
   const data = Object.fromEntries(formData.entries());
-  data.date = new Date();
   try {
     const response = await fetch(
       "https://portfolio-backened-one.vercel.app/api/email",

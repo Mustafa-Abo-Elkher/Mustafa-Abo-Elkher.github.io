@@ -72,27 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Contact form submission
   if (contactForm) {
-    contactForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const formData = new FormData(contactForm);
-      const name = formData.get("name");
-      const email = formData.get("email");
-      const subject = formData.get("subject") || "No Subject";
-      const message = formData.get("message");
-
-      if (!name || !email || !message) {
-        alert("Please fill in all required fields.");
-        return;
-      }
-
-      const mailtoLink = `mailto:mustafasaidelkher@gmail.com?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-      )}`;
-      window.location.href = mailtoLink;
-    });
+    contactForm.addEventListener("submit", sendMessageFunc);
   }
 });
 
@@ -125,4 +105,3 @@ async function sendMessageFunc(e) {
     console.log(`${error.message}`);
   }
 }
-contactForm.addEventListener("submit", sendMessageFunc);

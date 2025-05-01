@@ -107,22 +107,22 @@ async function sendMessageFunc(e) {
   const formData = new FormData(e.currentTarget);
   const data = Object.fromEntries(formData.entries());
   data.date = new Date();
-}
-try {
-  const response = await fetch(
-    "https://portfolio-backened-one.vercel.app/api/email",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    }
-  );
+  try {
+    const response = await fetch(
+      "https://portfolio-backened-one.vercel.app/api/email",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    );
 
-  const result = await response.json();
-  if (!response.ok) throw new Error(result.message);
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.message);
 
-  console.log("Message was sent successfully!");
-} catch (error) {
-  console.log(`${error.message}`);
+    console.log("Message was sent successfully!");
+  } catch (error) {
+    console.log(`${error.message}`);
+  }
 }
 contactForm.addEventListener("submit", sendMessageFunc);

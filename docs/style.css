@@ -675,3 +675,34 @@ body.dark-mode .hamburger .bar {
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
 }
+
+/* Notification styles */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.notification.success {
+  background-color: #4caf50;
+}
+
+.notification.error {
+  background-color: #f44336;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .notification {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}

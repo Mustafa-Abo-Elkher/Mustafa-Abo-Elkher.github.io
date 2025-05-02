@@ -86,6 +86,9 @@ async function sendMessageFunc(e) {
 
   const formData = new FormData(e.currentTarget);
   const data = Object.fromEntries(formData.entries());
+  const notification = document.createElement("div");
+  notification.className = "notification";
+
   try {
     const response = await fetch(
       "https://portfolio-backened-one.vercel.app/api/email",
@@ -99,8 +102,23 @@ async function sendMessageFunc(e) {
     const result = await response.json();
     if (!response.ok) throw new Error(result.message);
 
-    console.log("Message was sent successfully!");
+    // Show success notification
+    notification.textContent = "Message sent successfully!";
+    notification.classList.add("success");
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.remove();
+      window.location.href = "/";
+    }, 3000);
   } catch (error) {
-    console.log(`${error.message}`);
+    // Show error notification
+    notification.textContent = `Error: ${error.message}`;
+    notification.classList.add("error");
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
   }
 }
